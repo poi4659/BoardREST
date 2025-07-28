@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--https://mybatis.org/dtd/mybatis-3-mapper.dtd가 다운로드되지 않으면 <a> 태그로 다운해서 
+	로컬로 등록한다. -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "file:///Library/schema/mybatis-3-mapper.dtd">
+
+<!--네임스페이스의 충돌을 방지하기 위해 설정한다. -->
+<mapper namespace="jin.spring.board">
+	<!-- 게시글 등록 -->
+	<insert id="insert" parameterType="BoardDTO">
+		INSERT INTO BOARD (BDNUM, BDTITLE, BDCONTENT, BDWRITER)
+		<!-- #{}로 안전하게 바인딩 -->
+		VALUES (BOARD_SEQ.NEXTVAL, #{bdTitle}, #{bdContent}, #{bdWriter})
+	</insert>
+</mapper>

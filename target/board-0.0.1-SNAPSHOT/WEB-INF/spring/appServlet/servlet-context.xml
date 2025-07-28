@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+	xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc file:///Library/schema/spring-mvc.xsd 
+	http://www.springframework.org/schema/beans file:///Library/schema/spring-beans.xsd 
+	http://www.springframework.org/schema/context file:///Library/schema/spring-context.xsd">
+
+	<!--웹 요청을 처리하는 어노테이션(예: @RequestMapping, @GetMapping, @PostMapping 등)을 활성화 -->
+	<!-- 위 어노테이션 쓰려면 이거 써야 함 -->
+	<annotation-driven />
+
+	<!-- 정적 리소스 매핑 -->
+	<resources mapping="/resources/**" location="/resources/" />
+	<resources mapping="/css/**" location="/resources/css/" />
+	<resources mapping="/js/**" location="/resources/js/" />
+	<resources mapping="/img/**" location="/resources/img/" />
+
+	<!-- InternalResourceViewResolver 클래스 설정 -->
+	<beans:bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!--뷰의 접근 경로를 설정한다. -->
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<!--확장자를 설정하며 설정된 확장자는 명시하지 않아도 된다. -->
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+
+	<!-- 주로 @Controller 붙은 웹 컨트롤러를 스캔해서 웹 요청을 처리할 빈으로 등록 -->
+	<context:component-scan
+		base-package="jin.spring.board" />
+</beans:beans>
