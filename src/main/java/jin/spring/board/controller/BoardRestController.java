@@ -59,6 +59,7 @@ public class BoardRestController {
 	}
 	
 //	게시글 상세 조회 
+//	@PathVariable: {bdNum} 경로 변수로 게시글 번호 받음
 	@GetMapping(value = "/BoardSelect/{bdNum}", produces = "application/json; charset=UTF-8")
 	public BoardDTO select(@PathVariable("bdNum") int bdNum) throws Exception {
 		logger.info("게시글 상세 조회: " + bdNum);
@@ -71,23 +72,15 @@ public class BoardRestController {
 	public Map<String, String> update(@PathVariable("bdNum") int bdNum, @RequestBody BoardDTO boardDTO) throws Exception {
 		logger.info("게시글 수정");
 		
-//		@PathVariable로 받은 값을 실제 DTO에 세팅
+//		@PathVariable로 받은 값을 실제 DTO에 세팅해서 서비스에 전달 
 		boardDTO.setBdNum(bdNum);
 		
+//		서비그 호출하여 수정 처리 
 		boardService.boardUpdate(boardDTO);
 
 //		스프링이 이 Map을 JSON으로 변환하여 클라이언트에 보냄
 		return Collections.singletonMap("message", "게시글 수정 성공");
 	}
 	
-//	게시글 삭제
-	@DeleteMapping(value="/BoardDelete/{bdNum}", produces = "application/json; charset=UTF-8")
-	public Map<String, String> delete(@PathVariable("bdNum") int bdNum) throws Exception {
-		logger.info("게시글 삭제");
-		
-		boardService.boardDelete(bdNum);
-		
-//		스프링이 이 Map을 JSON으로 변환하여 클라이언트에 보냄
-		return Collections.singletonMap("message", "게시글 삭제 성공");
-	}
+
 }
