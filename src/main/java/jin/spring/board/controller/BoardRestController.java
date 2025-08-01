@@ -50,7 +50,7 @@ public class BoardRestController {
 		return Collections.singletonMap("message", "게시글 등록 성공");
 	}
 
-//	게시글 목록 조회
+//	게시글 목록 조회 
 	@GetMapping(value = "/BoardList", produces = "application/json; charset=UTF-8")
 	public List<BoardDTO> list() throws Exception {
 		logger.info("게시글 목록 조회");
