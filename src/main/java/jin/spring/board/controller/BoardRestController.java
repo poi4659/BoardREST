@@ -82,5 +82,16 @@ public class BoardRestController {
 		return Collections.singletonMap("message", "게시글 수정 성공");
 	}
 	
-
+//	게시글 삭제
+//	게시글 번호만 있으면 삭제 가능하므로 DTO 세팅 안함 
+	@DeleteMapping(value="/BoardDelete/{bdNum}", produces = "application/json; charset=UTF-8")
+	public Map<String, String> delete(@PathVariable("bdNum") int bdNum) throws Exception {
+		logger.info("게시글 삭제");
+		
+//		번호로 게시글 삭제 처리
+		boardService.boardDelete(bdNum);
+		
+//		스프링이 이 Map을 JSON으로 변환하여 클라이언트에 보냄
+		return Collections.singletonMap("message", "게시글 삭제 성공");
+	}
 }
