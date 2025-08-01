@@ -15,4 +15,10 @@ public interface BoardDAO {
 //	게시글 상세 조회
 	public BoardDTO select(int bdNum) throws Exception;
 
+//	게시글 수정
+	public void update(BoardDTO boardDTO) throws Exception;
+
+//	게시글 삭제
+	public void delete(int bdNum) throws Exception;
+
 }

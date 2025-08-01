@@ -38,4 +38,16 @@ public class BoardDAOImp implements BoardDAO {
 		return sqlSessionTemplate.selectOne("jin.spring.board.select", bdNum);
 	}
 
+//	게시글 수정
+	@Override
+	public void update(BoardDTO boardDTO) throws Exception {
+		sqlSessionTemplate.update("jin.spring.board.update", boardDTO);
+	}
+
+//	게시글 삭제
+	@Override
+	public void delete(int bdNum) throws Exception {
+		sqlSessionTemplate.delete("jin.spring.board.delete", bdNum);
+	}
+
 }

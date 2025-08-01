@@ -42,5 +42,17 @@ public class BoardServiceImp implements BoardService{
 	public BoardDTO boardSelect(int bdNum) throws Exception {
 		return boardDAO.select(bdNum);
 	}
+
+//	게시글 수정
+	@Override
+	public void boardUpdate(BoardDTO boardDTO) throws Exception {
+		boardDAO.update(boardDTO);
+	}
+
+//	게시글 삭제
+	@Override
+	public void boardDelete(int bdNum) throws Exception {
+		boardDAO.delete(bdNum);
+	}
 }
 

@@ -9,9 +9,11 @@ import org.apache.catalina.loader.ResourceEntry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -62,5 +64,30 @@ public class BoardRestController {
 		logger.info("게시글 상세 조회: " + bdNum);
 		
 		return boardService.boardSelect(bdNum);
+	}
+	 
+//  게시글 수정
+	@PutMapping(value = "/BoardUpdate/{bdNum}", produces = "application/json; charset=UTF-8")
+	public Map<String, String> update(@PathVariable("bdNum") int bdNum, @RequestBody BoardDTO boardDTO) throws Exception {
+		logger.info("게시글 수정");
+		
+//		@PathVariable로 받은 값을 실제 DTO에 세팅
+		boardDTO.setBdNum(bdNum);
+		
+		boardService.boardUpdate(boardDTO);
+
+//		스프링이 이 Map을 JSON으로 변환하여 클라이언트에 보냄
+		return Collections.singletonMap("message", "게시글 수정 성공");
+	}
+	
+//	게시글 삭제
+	@DeleteMapping(value="/BoardDelete/{bdNum}", produces = "application/json; charset=UTF-8")
+	public Map<String, String> delete(@PathVariable("bdNum") int bdNum) throws Exception {
+		logger.info("게시글 삭제");
+		
+		boardService.boardDelete(bdNum);
+		
+//		스프링이 이 Map을 JSON으로 변환하여 클라이언트에 보냄
+		return Collections.singletonMap("message", "게시글 삭제 성공");
 	}
 }
