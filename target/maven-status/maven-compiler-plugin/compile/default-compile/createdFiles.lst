@@ -1,8 +1,0 @@
-module-info.class
-jin/spring/board/controller/HomeController.class
-jin/spring/board/dto/BoardDTO.class
-jin/spring/board/controller/BoardController.class
-jin/spring/board/dao/BoardDAO.class
-jin/spring/board/service/BoardServiceImp.class
-jin/spring/board/service/BoardService.class
-jin/spring/board/dao/BoardDAOImp.class
