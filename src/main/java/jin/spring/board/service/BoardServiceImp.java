@@ -1,5 +1,7 @@
 package jin.spring.board.service;
 
+import java.util.List;
+
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +29,18 @@ public class BoardServiceImp implements BoardService{
 //			예외가 발생해도 프로그램이 강제 종료되지 않고, 예외 로그만 출력됨
 			e.printStackTrace();
 		}
+	}
+
+//	게시글 목록 조회
+	@Override
+	public List<BoardDTO> boardList() throws Exception {
+		return boardDAO.list();
+	}
+
+//	게시글 상세 조회
+	@Override
+	public BoardDTO boardSelect(int bdNum) throws Exception {
+		return boardDAO.select(bdNum);
 	}
 }
 

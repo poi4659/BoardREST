@@ -2,15 +2,19 @@ package jin.spring.board.controller;
 
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.catalina.loader.ResourceEntry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import jin.spring.board.dto.BoardDTO;
@@ -43,5 +47,20 @@ public class BoardRestController {
 //		스프링이 이 Map을 JSON으로 변환하여 클라이언트에 보냄
 		return Collections.singletonMap("message", "게시글 등록 성공");
 	}
+
+//	게시글 목록 조회
+	@GetMapping(value = "/BoardList", produces = "application/json; charset=UTF-8")
+	public List<BoardDTO> list() throws Exception {
+		logger.info("게시글 목록 조회");
+		
+		return boardService.boardList();
+	}
 	
+//	게시글 상세 조회 
+	@GetMapping(value = "/BoardSelect/{bdNum}", produces = "application/json; charset=UTF-8")
+	public BoardDTO select(@PathVariable("bdNum") int bdNum) throws Exception {
+		logger.info("게시글 상세 조회: " + bdNum);
+		
+		return boardService.boardSelect(bdNum);
+	}
 }

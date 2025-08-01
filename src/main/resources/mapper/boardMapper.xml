@@ -11,4 +11,16 @@
 		<!-- #{}로 안전하게 바인딩 -->
 		VALUES (BOARD_SEQ.NEXTVAL, #{bdTitle}, #{bdContent}, #{bdWriter})
 	</insert>
+
+	<!-- 게시글 목록 조회 -->
+	<select id="list" resultType="BoardDTO">
+		SELECT BDNUM, BDTITLE, BDWRITER, BDREGDATE FROM BOARD
+		ORDER BY BDNUM DESC
+	</select>
+
+	<!-- 게시글 상세 조회 -->
+	<select id="select" parameterType="int" resultType="BoardDTO">
+		SELECT BDNUM, BDTITLE, BDCONTENT, BDWRITER, BDREGDATE FROM BOARD
+		WHERE BDNUM = #{bdNum}
+	</select>
 </mapper>

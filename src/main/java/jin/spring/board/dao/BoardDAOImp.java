@@ -1,5 +1,7 @@
 package jin.spring.board.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -21,6 +23,19 @@ public class BoardDAOImp implements BoardDAO {
 		 * XML 매퍼 파일에서 namespace="jin.spring.board"와 id="insert"에 해당하는 SQL 쿼리를 실행
 		 */
 		sqlSessionTemplate.insert("jin.spring.board.insert", boardDTO);
+	}
+
+//	게시글 목록 조회
+	@Override
+	public List<BoardDTO> list() throws Exception {
+		return sqlSessionTemplate.selectList("jin.spring.board.list");
+
+	}
+
+//	게시글 상세 조회
+	@Override
+	public BoardDTO select(int bdNum) throws Exception {
+		return sqlSessionTemplate.selectOne("jin.spring.board.select", bdNum);
 	}
 
 }
