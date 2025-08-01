@@ -36,8 +36,9 @@
 		id="sqlSessionFactoryBean">
 		<property name="dataSource" ref="hikariDataSource" />
 		<!-- MyBatis 환경 설정 -->
-		<property name="configLocation"
-			value="classpath:/configuration/config.xml" />
+		<!-- 자동별칭 등록 패키지 전체 스캔으로 더 안정적 -->
+		<property name="typeAliasesPackage" value="jin.spring.board.dto" />
+		
 		<!-- 실제 SQL이 작성된 매퍼 -->
 		<property name="mapperLocations"
 			value="classpath:/mapper/boardMapper.xml" />
